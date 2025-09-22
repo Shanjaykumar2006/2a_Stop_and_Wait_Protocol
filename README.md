@@ -11,54 +11,42 @@ To write a python program to perform stop and wait protocol
 ## PROGRAM
  
 CLIENT: 
- 
-import socket 
-
-s=socket.socket() 
-
-s.blind(('localhost',8000))
-
-s.listen(5) 
-
-c,addr=s.accept() 
-
-while True: 
-
-    i=input("Enter a data: ") 
-    
-    c.send(i.encode()) 
-
-    ack=c.recv(1024).decode() 
-    
-    if ack: 
-    
-        print(ack) 
-        
-        continue 
-    else: 
-    
-        c.close() 
-        
-        break 
-
+ ```
+import socket
+s=socket.socket()
+s.bind(('localhost',8000))
+s.listen(5)
+c,addr=s.accept()
+while True:
+    i=input("Enter a data: ")
+    c.send(i.encode())
+    ack=c.recv(1024).decode()
+    if ack:
+        print(ack)
+        continue
+    else:
+        c.close()
+        break
+```
  
 SERVER: 
- 
-import socket 
-
-s=socket.socket() 
-
-s.connect(('localhost',8000)) 
-
-while True: 
-
-    print(s.recv(1024).decode()) 
-    
-    s.send("Acknowledgement Recived".encode())
-    
+``` 
+import socket
+s=socket.socket()
+s.connect(('localhost',8000))
+while True:
+    print(s.recv(1024).decode())
+    s.send("Acknowledgement Recieved".encode())
+```    
 ## OUTPUT
+server
 
-![Screenshot 2025-03-20 135836](https://github.com/user-attachments/assets/e586aaf6-d51d-4f5a-af07-18d389822a8b)
+<img width="295" height="172" alt="image" src="https://github.com/user-attachments/assets/e4d8cd36-b7bb-4705-bd3b-ca778a88f11e" />
+
+client
+
+<img width="530" height="301" alt="image" src="https://github.com/user-attachments/assets/8aa3843b-d6d1-4aca-b5ef-cd19b253fedb" />
+
 
 ## RESULT
 Thus, python program to perform stop and wait protocol was successfully executed.
